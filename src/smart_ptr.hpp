@@ -39,12 +39,22 @@ public:
 		return *this;
 	}
 
-	object_type& operator *() const
+	object_type& operator *()
 	{
 		return *get();
 	}
-
-	object_type* operator ->() const
+	
+	const object_type& operator *() const
+	{
+		return *get();
+	}
+	
+	object_type* operator ->()
+	{
+		return get();
+	}
+	
+	const object_type* operator ->() const
 	{
 		return get();
 	}
@@ -89,7 +99,12 @@ public:
 		return 0 != m_ptr ? *address_of_counter(m_ptr) : 0;
 	}
 
-	object_type* get() const
+	object_type* get()
+	{
+		return address_of_object(m_ptr);
+	}
+	
+	const object_type* get() const
 	{
 		return address_of_object(m_ptr);
 	}
